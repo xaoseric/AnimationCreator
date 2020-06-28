@@ -1,5 +1,8 @@
 const { app, BrowserWindow } = require('electron')
-const path = requrie('path')
+const path = require('path')
+
+const urlPath = path.join(__dirname, 'app/index.html');
+const winUrl = `file://${urlPath}`
 
 function createWindow () {
   // Create the browser window.
@@ -9,12 +12,14 @@ function createWindow () {
     minHeight: 600,
     minWidth: 1070,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: false
     }
   })
 
+  win.setMenu(null)
+
   // and load the index.html of the app.
-  win.loadFile(path.join(__dirname, 'app/index.html'))
+  win.loadURL(winUrl)
 }
 
 // This method will be called when Electron has finished
